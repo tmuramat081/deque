@@ -19,7 +19,7 @@ t_deque	*ft_deque_init(size_t data_size, size_t cap)
 	new_deque = malloc(sizeof(t_deque));
 	if (!new_deque)
 		return (NULL);
-	new_deque->data = malloc(sizeof(data_size) * (cap + 1));
+	new_deque->data = malloc(sizeof(data_size) * cap);
 	if (!new_deque->data)
 	{
 		free(new_deque);

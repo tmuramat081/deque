@@ -4,9 +4,7 @@ CC := gcc
 
 SRCS := \
 	ft_deque_init.c \
-	ft_deque_push.c \
-	ft_deque_pop.c \
-	ft_deque_operator.c \
+	ft_deque_modifier.c \
 	ft_deque_iterator.c \
 	ft_deque_check.c \
 	ft_deque_realloc.c \

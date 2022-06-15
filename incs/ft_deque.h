@@ -52,8 +52,8 @@ bool	ft_deque_is_empty(t_deque *deque);
 t_deque	*ft_deque_realloc(t_deque *deuqe);
 
 // ********** Iterator ********** //
-void	*ft_deque_begin(t_deque *deque);
-void	*ft_deque_end(t_deque *deque);
+void	*ft_deque_front(t_deque *deque);
+void	*ft_deque_back(t_deque *deque);
 void	*ft_deque_next(t_deque *deque, void *i, size_t n);
 void	*ft_deque_prev(t_deque *deque, void *i, size_t n);
 

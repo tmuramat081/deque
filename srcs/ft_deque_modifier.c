@@ -40,8 +40,28 @@ int	ft_deque_pop_back(t_deque *deque, void *data)
 {
 	if (ft_deque_is_empty(deque) == true)
 		return (DEQUE_FAILURE);
-	ft_memcpy(data, deque->end, deque->data_size);
+	ft_memcpy(data, ft_deque_back(deque), deque->data_size);
 	deque->end = ft_deque_prev(deque, deque->end, 1);
 	deque->len -= 1;
+	return (DEQUE_SUCCESS);
+}
+
+int	ft_deque_push_front(t_deque *deque, const void *data)
+{
+	if (ft_deque_is_full(deque) == true)
+		return (DEQUE_FAILURE);
+	deque->begin = ft_deque_prev(deque, deque->begin, 1);
+	ft_memcpy(deque->begin, data, deque->data_size);
+	deque->len += 1;
+	return (DEQUE_SUCCESS);
+}
+
+int	ft_deque_push_back(t_deque *deque, const void *data)
+{
+	if (ft_deque_is_full(deque) == true)
+		return (DEQUE_FAILURE);
+	ft_memcpy(deque->end, data, deque->data_size);
+	deque->end = ft_deque_next(deque, deque->end, 1);
+	deque->len += 1;
 	return (DEQUE_SUCCESS);
 }

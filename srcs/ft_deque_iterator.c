@@ -12,41 +12,45 @@
 
 #include "ft_deque.h"
 
-void	*ft_deque_begin(t_deque *deque)
+void	*ft_deque_front(t_deque *deque)
 {
-	if (deque->begin == NULL)
+	if (deque->data == NULL)
 		return (NULL);
 	return (deque->begin);
 }
 
-void	*ft_deque_end(t_deque *deque)
+void	*ft_deque_back(t_deque *deque)
 {
-	if (deque->end == NULL)
+	if (deque->data == NULL)
 		return (NULL);
-	return ((char *)deque->end + deque->data_size);
+	return (ft_deque_prev(deque, deque->end, 1));
 }
 
 void	*ft_deque_next(t_deque *deque, void *i, size_t n)
 {
+	char 	*start;
 	size_t	size;
 	size_t	offset;
 
+	start = (char *)deque->data;
 	size = deque->data_size;
-	offset = ((char *)i - (char *)deque->data) / size;
+	offset = ((char *)i - start) / size;
 	offset = (offset + n) % deque->cap;
-	return ((char *)deque->data + offset * size);
+	return (start + offset * size);
 }
 
 void	*ft_deque_prev(t_deque *deque, void *i, size_t n)
 {
+	char 	*start;
 	size_t	size;
 	size_t	offset;
 
+	start = (char *)deque->data;
 	size = deque->data_size;
-	offset = (i - deque->data) / size;
+	offset = ((char *)i - start) / size;
 	if (offset < n)
-		return ((char *)deque->data + deque->cap * size - (n - offset));
-	return ((char *)deque->data + (offset - n) * size);
+		return (start + deque->cap * size - (n - offset) * size);
+	return (start + (offset - n) * size);
 }
 
 void	ft_deque_foreach(t_deque *deque, void (*func)(void *))

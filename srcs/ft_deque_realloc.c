@@ -26,37 +26,37 @@ static void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (dst);
 }
 
-t_deque	*ft_deque_copy(t_deque *dst, t_deque *src)
+static void	*ft_realloc(void *ptr, size_t size)
 {
-	void	*src_i;
-	void	*dst_i;
-	size_t	len;
+	void	*new_ptr;
 
-	if (src->len > dst->cap)
+	if (ptr == NULL)
+		return (malloc(size));
+	if (!size)
 		return (NULL);
-	src_i = src->begin;
-	dst_i = dst->begin;
-	len = src->len;
-	while (len--)
-	{
-		ft_memcpy(dst_i, src_i, src->data_size);
-		src_i = ft_deque_next(src, src_i, 1);
-		dst_i = ft_deque_next(dst, dst_i, 1);
-	}
-	dst->end = dst_i;
-	dst->len = src->len;
-	return (dst);
+	new_ptr = malloc(size);
+	if (!new_ptr)
+		return (NULL);
+	ft_memcpy (new_ptr, ptr, size);
+	free(ptr);
+	ptr = new_ptr;
+	return (ptr);
 }
 
-t_deque	*ft_deque_realloc(t_deque *deque)
+int	ft_deque_realloc(t_deque *deque)
 {
-	t_deque	*new_deque;
+	t_deque	*new_ptr;
+	size_t	new_cap;
+	size_t	offset;
 
-	new_deque = ft_deque_init(deque->data_size, deque->cap * 2);
-	if (!new_deque)
-		return (NULL);
-	ft_deque_copy(new_deque, deque);
-	ft_deque_delete(&deque);
-	deque = new_deque;
-	return (deque);
+	new_cap = deque->cap * 2;
+	offset = (char *)deque->begin - (char *)deque->data;
+	new_ptr = ft_realloc(deque->data, deque->data_size * new_cap);
+	if (!new_ptr)
+		return (DEQUE_FAILURE);
+	deque->data = new_ptr;
+	deque->begin = (char *)deque->data + offset;
+	deque->end = (char *)deque->begin + deque->len * deque->data_size;
+	deque->cap = new_cap;
+	return (DEQUE_SUCCESS);
 }

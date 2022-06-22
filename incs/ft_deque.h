@@ -43,13 +43,10 @@ int		ft_deque_pop_front(t_deque *deque, void *data);
 int		ft_deque_pop_back(t_deque *deque, void *data);
 void	ft_deque_clear(t_deque *deque);
 
-// ********** Operator ********** //
-void	*ft_deque_operator(t_deque *deque, size_t n);
-
 // ********** Capacity ********** //
 bool	ft_deque_is_full(t_deque *deque);
 bool	ft_deque_is_empty(t_deque *deque);
-t_deque	*ft_deque_realloc(t_deque *deuqe);
+int		ft_deque_realloc(t_deque *deuqe);
 
 // ********** Iterator ********** //
 void	*ft_deque_front(t_deque *deque);
@@ -58,7 +55,6 @@ void	*ft_deque_next(t_deque *deque, void *i, size_t n);
 void	*ft_deque_prev(t_deque *deque, void *i, size_t n);
 
 // ********** Other utils ********** //
-t_deque	*ft_deque_copy(t_deque *dst, t_deque *src);
 void	ft_deque_foreach(t_deque *deque, void (*func)(void *));
 void	ft_deque_status(t_deque *deque);
 

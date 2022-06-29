@@ -14,14 +14,14 @@
 
 void	*ft_deque_front(t_deque *deque)
 {
-	if (deque->data == NULL)
+	if (ft_deque_is_empty(deque) == true)
 		return (NULL);
 	return (deque->begin);
 }
 
 void	*ft_deque_back(t_deque *deque)
 {
-	if (deque->data == NULL)
+	if (ft_deque_is_empty(deque) == true)
 		return (NULL);
 	return (ft_deque_prev(deque, deque->end, 1));
 }
@@ -60,9 +60,9 @@ void	ft_deque_foreach(t_deque *deque, void (*func)(void *))
 
 	if (ft_deque_is_empty(deque) == true)
 		return ;
-	i = deque->begin;
+	i = ft_deque_front(deque);
 	len = deque->len;
-	while (0 < len--)
+	while (len--)
 	{
 		func(i);
 		i = ft_deque_next(deque, i, 1);

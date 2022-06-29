@@ -26,6 +26,11 @@ bool	ft_deque_is_empty(t_deque *deque)
 	return (false);
 }
 
+size_t	ft_deque_size(t_deque *deque)
+{
+	return (deque->len);
+}
+
 //******** For debug ********//
 void	ft_deque_status(t_deque *deque)
 {

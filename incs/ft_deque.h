@@ -46,6 +46,7 @@ void	ft_deque_clear(t_deque *deque);
 // ********** Capacity ********** //
 bool	ft_deque_is_full(t_deque *deque);
 bool	ft_deque_is_empty(t_deque *deque);
+size_t	ft_deque_size(t_deque *deque);
 int		ft_deque_realloc(t_deque *deuqe);
 
 // ********** Iterator ********** //
